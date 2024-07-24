@@ -12,6 +12,10 @@ defmodule EctoShorts.QueryBuilder.Schema.ComparisonFilter do
     where(query, [scm], field(scm, ^filter_field) in ^val)
   end
 
+  def build(query, filter_field, {:not, val}) when is_list(val) do
+    where(query, [scm], field(scm, ^filter_field) not in ^val)
+  end
+
   def build(query, filter_field, %NaiveDateTime{} = val) do
     where(query, [scm], field(scm, ^filter_field) == ^val)
   end
