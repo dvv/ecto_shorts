@@ -123,7 +123,7 @@ defmodule EctoShorts.QueryBuilder.Schema.ComparisonFilter do
   end
 
   defp build_relational_filter(query, binding_alias, filter_field, {:not, val}, _relational_schema) when is_list(val) do
-    where(query, [{^binding_alias, scm}], field(scm, not ^filter_field) in ^val)
+    where(query, [{^binding_alias, scm}], field(scm, ^filter_field) not in ^val)
   end
 
   defp build_relational_filter(query, binding_alias, filter_field, %NaiveDateTime{} = val, _relational_schema) do
